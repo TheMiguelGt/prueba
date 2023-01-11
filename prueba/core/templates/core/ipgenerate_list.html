@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %} 
+{% load static %} 
+
+{% block content %}
+{% if not object_list  %}
+        No se ha creado la ip
+        <a href="{% url 'create' %}">Generar ip</a>
+{% else %}
+        <table>
+                <thead>
+                   <th>Ip</th>    
+                   {% comment %} <th>Editar</th>      {% endcomment %}
+                   <th>Eliminar</th>      
+                </thead>
+                <tbody>
+                        <tr>
+                        {% for x in object_list %}
+                                <td>{{x.valor}}</td>
+                                {% comment %} <td><a href="{% url 'update' x.id %}">Actualizar</a></td> {% endcomment %}
+                                <td><a href="{% url 'delete' x.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                        
+                </tbody>
+                
+        </table>
+        <a href="{% url 'create' %}">Generar ip</a>
+{% endif %}
+        
+{% endblock content %}
